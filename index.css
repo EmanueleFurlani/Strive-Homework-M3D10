@@ -1,0 +1,126 @@
+body, html {
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background-color: #141414;
+  color: #fff;
+  font-size: 16px;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar-dark .nav-item .nav-link {
+padding: 0;
+margin: 8px;
+}
+.navbar-dark .nav-item .nav-link:hover,
+.navbar-dark .nav-item .nav-link:focus {
+color: rgba(255, 255, 255, 0.95);
+}
+.navbar-dark .active .nav-link {
+font-weight: 700;
+}
+
+.dropdown-menu {
+background-color:#141414;
+padding: 0;
+}
+
+.dropdown-item {
+color: #fff;
+padding: 14px 48px 14px 16px;
+border-bottom: 1px solid rgb(50 62 76);
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+color: white;
+background-color: transparent;
+}
+.user-class {
+  background:#141414;
+  border: none;
+  color: rgba(255,255,255,.5);
+}
+.user-class:hover,.user-class:focus{
+  color: rgba(255, 255, 255, 0.95);
+  border:none;
+}
+.icons-right{
+  float: right;
+}
+.right-side-menu {
+  display: flex;
+  align-items: center;
+}
+.right-side-menu .nav-link {
+  color:rgba(255,255,255,.5);
+
+}
+.tvShows {
+  padding: 15px 64px;
+}
+.tvShows h2 {
+  font-size: 25px;
+  font-weight: 700;
+}
+.tvShows button{
+      padding: 0 16px;
+      border: 1px solid #fff;
+      margin-left: 16px !important;
+      border-radius: 7px;
+}
+
+h3.section-title-netfix {
+  font-size: 19px;
+  line-height: 28px;
+  vertical-align: bottom;
+  text-transform: capitalize;
+}
+
+/*Emmanuel Css*/
+.section-title {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+.netflix-badge {
+  position: absolute;
+  top: 0;
+  left: 0.25rem;
+}
+
+
+
+
+/* LINKS */
+.link {
+padding: 50px;
+}
+
+.sub-links ul {
+list-style: none;
+padding: 0;
+display: grid;
+grid-gap: 20px;
+grid-template-columns: repeat(4, 1fr);
+}
+
+.sub-links a {
+color: var(--dark);
+text-decoration: none;
+}
+
+.sub-links a:hover {
+color: var(--dark);
+text-decoration: underline;
+}
+
+.logos a{
+padding: 10px;
+}
+
+.logo {
+color: var(--dark);
+}
