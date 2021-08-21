@@ -12,6 +12,16 @@ const loadInfoEndPoint = url + movieCategory
 //method to use depending if there's an ID or not
 const method = movieID ? "PUT" : "POST"
 
+// function to check if it's loading
+const isLoading = async function (loading) {
+  const spinner = document.querySelector(".spinner-grow")
+  if (loading) {
+    spinner.classList.remove("d-none")
+  } else {
+    spinner.classList.add("d-none")
+  }
+}
+
 //get input fields nodes
 const nameInput = document.getElementById("movie-show-name")
 const descriptionInput = document.getElementById("movie-show-description")
@@ -28,6 +38,7 @@ const checkId = async () => {
 
     document.querySelector("#add-or-edit-title").innerText =
       "Edit your Movie/Show"
+      isLoading(true)
     try {
       const response = await fetch(loadInfoEndPoint, {
         headers: {
@@ -47,6 +58,7 @@ const checkId = async () => {
           imageInput.value = movie.imageUrl
         }
       })
+       isLoading(false)
     } catch (err) {
       const errorContainer = document.querySelector(
         "#error-container .text-danger"
@@ -54,6 +66,49 @@ const checkId = async () => {
       errorContainer.classList.remove("d-none")
       errorContainer.innerText = err
     }
+  } else {
+    isLoading(false)
+  }
+}
+
+//check invalid input
+
+const checkInvalid = () => {
+  if (nameInput.validity.valueMissing) {
+    nameInput.classList.add("is-invalid")
+  } else {
+    nameInput.classList.remove("is-invalid")
+  }
+
+  if (descriptionInput.validity.valueMissing) {
+    descriptionInput.classList.add("is-invalid")
+  } else {
+    descriptionInput.classList.remove("is-invalid")
+  }
+
+  if (categoryInput.validity.valueMissing) {
+    categoryInput.classList.add("is-invalid")
+  } else {
+    categoryInput.classList.remove("is-invalid")
+  }
+
+  if (imageInput.validity.valueMissing) {
+    imageInput.classList.add("is-invalid")
+  } else {
+    imageInput.classList.remove("is-invalid")
+  }
+}
+
+//check valid input
+const checkValid = (e) => {
+  const currentInput = e.currentTarget
+
+  if (currentInput.validity.valueMissing) {
+    currentInput.classList.add("is-invalid")
+    currentInput.classList.remove("is-valid")
+  } else {
+    currentInput.classList.add("is-valid")
+    currentInput.classList.remove("is-invalid")
   }
 }
 
@@ -69,6 +124,7 @@ const postOrEditMovies = async (event) => {
     imageUrl: imageInput.value,
   }
 
+   isLoading(true)
   // Fetch the Api and post the new object
   try {
     const response = await fetch(deleteLoadInfoEndPoint, {
@@ -81,6 +137,8 @@ const postOrEditMovies = async (event) => {
       },
     })
     
+    isLoading(false)
+
     if (response.ok) {
       const alertSuccess = document.querySelector(".alert-success")
       if (movieID) {
@@ -119,6 +177,9 @@ const deleteMovie = async function () {
             "Content-Type": "application/json",
         },
       })
+
+      isLoading(false)
+
       const alertSuccess = document.querySelector(".alert-success")
       if (response.ok) {
         alertSuccess.classList.remove("d-none")
@@ -138,4 +199,9 @@ const deleteMovie = async function () {
 
 window.onload = () => {
   checkId()
+
+  nameInput.addEventListener("keyup", (e) => checkValid(e))
+  descriptionInput.addEventListener("keyup", (e) => checkValid(e))
+  categoryInput.addEventListener("keyup", (e) => checkValid(e))
+  imageInput.addEventListener("keyup", (e) => checkValid(e))
 }
